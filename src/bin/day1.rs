@@ -1,6 +1,5 @@
 use std::fs;
 
-
 /// Advent of code day 1
 fn main() {
     let (a_side, b_side) = parse_data();
@@ -18,7 +17,7 @@ fn parse_data() -> (Vec<i64>, Vec<i64>) {
         if let Some((a, b)) = line.split_once("   ") {
             a_side.push(a.parse::<i64>().unwrap());
             b_side.push(b.parse::<i64>().unwrap());
-        } else{
+        } else {
             println!("something went wrong");
         };
     }
@@ -29,13 +28,13 @@ fn parse_data() -> (Vec<i64>, Vec<i64>) {
 ///
 /// `a_side` - The left side from the file
 /// `b_side` - The right side from the file
-fn part_1(mut a_side: Vec<i64>, mut b_side: Vec<i64>){
+fn part_1(mut a_side: Vec<i64>, mut b_side: Vec<i64>) {
     a_side.sort();
     b_side.sort();
     let mut total = 0;
-    for (i, a_val) in a_side.iter().enumerate(){
+    for (i, a_val) in a_side.iter().enumerate() {
         let b_val = &b_side[i];
-        if a_val <= b_val{
+        if a_val <= b_val {
             total += b_val - a_val;
         } else {
             total += a_val - b_val;
@@ -48,18 +47,17 @@ fn part_1(mut a_side: Vec<i64>, mut b_side: Vec<i64>){
 ///
 /// `a_side` - The left side from the file
 /// `b_side` - The right side from the file
-fn part_2(a_side: Vec<i64>, b_side: Vec<i64>){
+fn part_2(a_side: Vec<i64>, b_side: Vec<i64>) {
     let mut similarity = 0;
-    for a_val in a_side.iter(){
+    for a_val in a_side.iter() {
         let mut count = 0;
 
-        for b_val in b_side.iter(){
-            if b_val == a_val{
+        for b_val in b_side.iter() {
+            if b_val == a_val {
                 count += 1;
             }
         }
         similarity += a_val * count;
-
     }
     println!("Day1 - Part2 (similarity): {similarity}");
 }
